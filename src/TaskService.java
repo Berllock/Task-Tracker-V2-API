@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class TaskService {
@@ -20,6 +21,28 @@ public class TaskService {
         tasks.add(newTask);
         System.out.println("Task added");
 
+    }
+
+    public void updateTask(String id, String description) {
+        if (description == null) {
+            System.out.println("Description is null");
+        }
+
+        String cleanId = id.trim();
+
+        TaskProperties taskUpdate = tasks.stream()
+                .filter(Objects::nonNull)
+                .filter(task -> cleanId.equals(task.getId().trim()))
+                .findFirst()
+                .orElse(null);
+
+        if (taskUpdate != null) {
+            taskUpdate.setDescription(description);
+            taskUpdate.setUpdatedAt(LocalDate.now());
+            System.out.println("Task updated");
+        } else {
+            System.out.println("Task not found");
+        }
     }
 
 

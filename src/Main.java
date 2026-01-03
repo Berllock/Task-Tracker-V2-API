@@ -3,9 +3,12 @@
 public class Main {
     public static void main(String[] args) {
 
+        TaskService task = new TaskService();
+
         if (args.length == 0) {
             printHelp();
         }
+
 
 
 
