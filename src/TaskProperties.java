@@ -1,23 +1,25 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TaskProperties {
 
-    private Long id;
+    private String id;
     private String description;
-    private TaskStatus status;
-    private Date createdAt;
-    private Date updatedAt;
+    private String status;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 
     public TaskProperties() {}
 
-    public TaskProperties(Long id, String description, TaskStatus status, Date createdAt) {
+    public TaskProperties(String id, String description, String status, LocalDate createdAt, LocalDate updatedAt) {
         this.id = id;
         this.description = description;
         this.status = status;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -29,23 +31,23 @@ public class TaskProperties {
         this.description = description;
     }
 
-    public TaskStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(TaskStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDate getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
 }
