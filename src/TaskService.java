@@ -44,12 +44,18 @@ public class TaskService {
     public void deleteTask(String id) {
         TaskProperties task = findTaskById(id);
 
+        if (task != null) {
+            tasks.remove(task);
+            System.out.println("Task deleted");
+        } else  {
+            System.out.println("Task found");
+        }
 
     }
 
 
     public TaskProperties findTaskById(String id) {
-        if (id == null && id.isEmpty()) {
+        if (id == null || id.isEmpty()) {
             return null;
         }
 
