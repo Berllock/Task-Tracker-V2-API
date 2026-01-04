@@ -8,10 +8,9 @@ public class TaskService {
     List<TaskProperties> tasks;
     LocalDate today =  LocalDate.now();
 
-
     public void addTask(String description) {
 
-        if (description == null) {
+        if (description == null || description.isEmpty()) {
             System.out.println("Description is null");
             return;
         }
@@ -24,13 +23,11 @@ public class TaskService {
     }
 
     public void updateTask(String id, String description) {
-        if (description == null) {
+        if (description == null || description.isEmpty()) {
             System.out.println("Description is null");
         }
 
-        String cleanId = id.trim();
-
-        TaskProperties taskUpdate = findTaskById(cleanId);
+        TaskProperties taskUpdate = findTaskById(id);
 
         if (taskUpdate != null) {
             taskUpdate.setDescription(description);
@@ -70,7 +67,7 @@ public class TaskService {
         return tasks.stream()
                 .filter(Objects::nonNull)
                 .filter(task -> task.getId() != null)
-                .filter(task -> task.getId().equals(cleanId))
+                .filter(task -> cleanId.equals(task.getId()))
                 .findFirst()
                 .orElse(null);
     }
