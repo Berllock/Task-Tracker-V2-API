@@ -30,11 +30,7 @@ public class TaskService {
 
         String cleanId = id.trim();
 
-        TaskProperties taskUpdate = tasks.stream()
-                .filter(Objects::nonNull)
-                .filter(task -> cleanId.equals(task.getId().trim()))
-                .findFirst()
-                .orElse(null);
+        TaskProperties taskUpdate = findTaskById(cleanId);
 
         if (taskUpdate != null) {
             taskUpdate.setDescription(description);
@@ -43,6 +39,28 @@ public class TaskService {
         } else {
             System.out.println("Task not found");
         }
+    }
+
+    public void deleteTask(String id) {
+        TaskProperties task = findTaskById(id);
+
+
+    }
+
+
+    public TaskProperties findTaskById(String id) {
+        if (id == null && id.isEmpty()) {
+            return null;
+        }
+
+        String cleanId = id.trim();
+
+        return tasks.stream()
+                .filter(Objects::nonNull)
+                .filter(task -> task.getId() != null)
+                .filter(task -> task.getId().equals(cleanId))
+                .findFirst()
+                .orElse(null);
     }
 
 
