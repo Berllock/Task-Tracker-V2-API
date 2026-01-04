@@ -50,9 +50,15 @@ public class TaskService {
         } else  {
             System.out.println("Task found");
         }
-
     }
 
+    public void listTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("Not found tasks");
+        } else {
+            tasks.forEach(System.out::println);
+        }
+    }
 
     public TaskProperties findTaskById(String id) {
         if (id == null || id.isEmpty()) {
@@ -68,8 +74,6 @@ public class TaskService {
                 .findFirst()
                 .orElse(null);
     }
-
-
 
 
 }
