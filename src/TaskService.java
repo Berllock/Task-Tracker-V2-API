@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class TaskService {
 
@@ -46,6 +47,19 @@ public class TaskService {
             System.out.println("Task deleted");
         } else  {
             System.out.println("Task found");
+        }
+    }
+
+    public void listTasksByStatus(String status) {
+        List<TaskProperties> filteredTask = tasks.stream()
+                .filter(Objects::nonNull)
+                .filter(task -> status != null && status.equalsIgnoreCase(task.getStatus()))
+                .toList();
+
+        if (filteredTask.isEmpty()) {
+            System.out.println("No tasks found");
+        } else {
+            filteredTask.forEach(System.out::println);
         }
     }
 
