@@ -12,4 +12,16 @@ public class FileManager {
             .setPrettyPrinting()
             .create();
 
+    public void saveTasks(List<TaskProperties> tasks) {
+        System.out.println("Saving tasks to file...");
+
+        try(FileWriter writer = new FileWriter(FILE_NAME)) {
+            gson.toJson(tasks, writer);
+            System.out.println("Done!");
+        } catch (IOException e) {
+            System.err.println("Failed to save tasks to file!" + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
