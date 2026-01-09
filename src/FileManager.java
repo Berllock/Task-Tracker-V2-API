@@ -24,4 +24,31 @@ public class FileManager {
         }
     }
 
+    public List<TaskProperties> loadTasks() {
+        File file = new File(FILE_NAME);
+
+        if (!file.exists()) {
+            System.out.println("Tasks file does not exist! Start new empty list");
+            return new ArrayList<>();
+        }
+
+        try (FileReader reader = new FileReader(FILE_NAME)){
+            Type taskListType = new TypeToken<List<TaskProperties>>() {}.getType();
+
+            List<TaskProperties> tasks = gson.fromJson(reader, taskListType);
+
+            if (tasks == null) {
+                System.out.println("Tasks file is empty! Empty file created");
+                return new ArrayList<>();
+            }
+
+            System.out.println("Loaded tasks from file!");
+            return tasks;
+
+        } catch (IOException e) {
+            System.err.println("Failed to load tasks from file!" + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
 }
