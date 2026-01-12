@@ -5,8 +5,15 @@ import java.util.UUID;
 
 public class TaskService {
 
-    List<TaskProperties> tasks;
-    LocalDate today =  LocalDate.now();
+    private List<TaskProperties> tasks;
+    private FileManager fileManager;
+    private final LocalDate today =  LocalDate.now();
+
+    public TaskService() {
+        this.fileManager = new FileManager();
+        this.tasks = fileManager.loadTasks();
+        System.out.println("Start Task Service with " + tasks.size() + " tasks");
+    }
 
     public void addTask(String description) {
 
