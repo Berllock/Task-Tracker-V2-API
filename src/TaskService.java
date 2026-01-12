@@ -7,7 +7,6 @@ public class TaskService {
 
     private List<TaskProperties> tasks;
     private FileManager fileManager;
-    private final LocalDate today =  LocalDate.now();
 
     public TaskService() {
         this.fileManager = new FileManager();
@@ -23,8 +22,17 @@ public class TaskService {
         }
 
         String id = UUID.randomUUID().toString();
-        TaskProperties newTask = new TaskProperties(id, description, "todo", today, today);
+
+        TaskProperties newTask = new TaskProperties();
+        newTask.setId(id);
+        newTask.setDescription(description);
+        newTask.setStatus("todo");
+        newTask.setCreatedAt(LocalDate.now());
+        newTask.setUpdatedAt(LocalDate.now());
+
         tasks.add(newTask);
+        fileManager.saveTasks(tasks);
+
         System.out.println("Task added");
 
     }
@@ -69,7 +77,7 @@ public class TaskService {
         }
     }
 
-    public void listTasks() {
+    public void listAllTasks() {
         if (tasks.isEmpty()) {
             System.out.println("Not found tasks");
         } else {

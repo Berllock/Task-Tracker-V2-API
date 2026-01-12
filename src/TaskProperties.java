@@ -10,16 +10,12 @@ public class TaskProperties {
 
     public TaskProperties() {}
 
-    public TaskProperties(String id, String description, String status, LocalDate createdAt, LocalDate updatedAt) {
-        this.id = id;
-        this.description = description;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -40,6 +36,10 @@ public class TaskProperties {
 
     public LocalDate getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDate getUpdatedAt() {
