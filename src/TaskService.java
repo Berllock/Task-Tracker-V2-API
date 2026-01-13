@@ -6,7 +6,7 @@ import java.util.UUID;
 public class TaskService {
 
     private List<TaskProperties> tasks;
-    private FileManager fileManager;
+    private final FileManager fileManager;
 
     public TaskService() {
         this.fileManager = new FileManager();
