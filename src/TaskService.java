@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class TaskService {
 
-    private List<TaskProperties> tasks;
+    private final List<TaskProperties> tasks;
     private final FileManager fileManager;
 
     public TaskService() {
@@ -27,8 +27,8 @@ public class TaskService {
         newTask.setId(id);
         newTask.setDescription(description);
         newTask.setStatus("todo");
-        newTask.setCreatedAt(LocalDate.now());
-        newTask.setUpdatedAt(LocalDate.now());
+        newTask.setCreatedAt(LocalDate.now().toString());
+        newTask.setUpdatedAt(LocalDate.now().toString());
 
         tasks.add(newTask);
         fileManager.saveTasks(tasks);
@@ -40,17 +40,20 @@ public class TaskService {
     public void updateTask(String id, String description) {
         if (description == null || description.isEmpty()) {
             System.out.println("Description is null");
+            return;
         }
 
         TaskProperties taskUpdate = findTaskById(id);
 
         if (taskUpdate != null) {
             taskUpdate.setDescription(description);
-            taskUpdate.setUpdatedAt(LocalDate.now());
+            taskUpdate.setUpdatedAt(LocalDate.now().toString());
             System.out.println("Task updated");
         } else {
             System.out.println("Task not found");
         }
+
+        fileManager.saveTasks(tasks);
     }
 
     public void deleteTask(String id) {
@@ -60,8 +63,10 @@ public class TaskService {
             tasks.remove(task);
             System.out.println("Task deleted");
         } else  {
-            System.out.println("Task found");
+            System.out.println("Task not found");
         }
+
+        fileManager.saveTasks(tasks);
     }
 
     public void listTasksByStatus(String status) {

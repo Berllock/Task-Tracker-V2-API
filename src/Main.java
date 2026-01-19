@@ -47,6 +47,14 @@ public class Main {
                     printHelp();
                     break;
 
+                case "delete":
+                    if (args.length < 2) {
+                        System.err.println("Task ID is required");
+                        break;
+                    }
+                    task.deleteTask(args[1]);
+                    break;
+
                 default:
                     System.err.println("Unknown command");
                     printHelp();

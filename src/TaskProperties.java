@@ -5,8 +5,8 @@ public class TaskProperties {
     private String id;
     private String description;
     private String status;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
+    private String createdAt;
+    private String updatedAt;
 
     public TaskProperties() {}
 
@@ -34,19 +34,28 @@ public class TaskProperties {
         this.status = status;
     }
 
-    public LocalDate getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDate getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s] %s (Status: %s, Updated: %s)",
+                id.substring(0, Math.min(8, id.length())),
+                description,
+                status,
+                updatedAt);
     }
 }
