@@ -6,6 +6,7 @@ public class Main {
 
         if (args.length == 0) {
             printHelp();
+            return;
         }
 
         TaskService task = new TaskService();
