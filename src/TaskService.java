@@ -26,7 +26,7 @@ public class TaskService {
         TaskProperties newTask = new TaskProperties();
         newTask.setId(id);
         newTask.setDescription(description);
-        newTask.setStatus("todo");
+        newTask.setStatus(TaskStatus.TODO);
         newTask.setCreatedAt(LocalDate.now().toString());
         newTask.setUpdatedAt(LocalDate.now().toString());
 
@@ -70,9 +70,11 @@ public class TaskService {
     }
 
     public void listTasksByStatus(String status) {
+        TaskStatus filter = TaskStatus.fromString(status);
+
         List<TaskProperties> filteredTask = tasks.stream()
                 .filter(Objects::nonNull)
-                .filter(task -> status != null && status.equalsIgnoreCase(task.getStatus()))
+                .filter(task -> task.getStatus() == filter)
                 .toList();
 
         if (filteredTask.isEmpty()) {

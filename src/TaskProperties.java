@@ -4,7 +4,7 @@ public class TaskProperties {
 
     private String id;
     private String description;
-    private String status;
+    private TaskStatus status;
     private String createdAt;
     private String updatedAt;
 
@@ -26,12 +26,16 @@ public class TaskProperties {
         this.description = description;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public void setStatus(String status) {
+        this.status = TaskStatus.valueOf(status);
     }
 
     public String getCreatedAt() {
